@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptar Nombre Completo</title>
+</head>
+<body>
+    <h1>Encriptar Nombre</h1>
+    <form id="encryptionForm">
+        <label for="nombre">Ingrese su nombre:</label>
+        <input type="text" id="nombre" name="nombre" oninput="encriptarNombre()">
+    </form>
+    <p>Nombre encriptado: <span id="nombreEncriptado"></span></p>
+
+    <script>
+        function encriptarNombre() {
+            const nombreInput = document.getElementById('nombre');
+            const nombre = nombreInput.value;
+            const nombreEncriptado = encriptarVocales(nombre);
+            document.getElementById('nombreEncriptado').textContent = nombreEncriptado;
+        }
+
+        function encriptarVocales(texto) {
+            const sustituciones = {
+                'a': 'x',
+                'e': 'w',
+                'i': 'z',
+                'o': '&',
+                'u': '$'
+            };
+
+            let resultado = '';
+
+            for (let letra of texto) {
+                const letraMinuscula = letra.toLowerCase();
+                if (sustituciones.hasOwnProperty(letraMinuscula)) {
+                    resultado += sustituciones[letraMinuscula];
+                } else {
+                    resultado += letra;
+                }
+            }
+
+            return resultado;
+        }
+    </script>
+</body>
+</html>
